@@ -25,8 +25,10 @@ export const counterSlice = createSlice({
     incrementplustwo: (state) => {
       state.value += 2;
     },
+
     // Use the PayloadAction type to declare the contents of `action.payload`
     incrementByAmount: (state, action: PayloadAction<number>) => {
+      console.log(action);
       state.value += action.payload;
     },
   },

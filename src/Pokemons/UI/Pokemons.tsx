@@ -4,6 +4,7 @@ import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import {
   decrement,
   increment,
+  incrementByAmount,
   incrementplustwo,
 } from "../Structure/Pokemons.reducer";
 
@@ -43,6 +44,12 @@ const Pokemons: React.FC = () => {
           className="btn btn-outline-primary mt-2"
         >
           +2
+        </button>
+        <button
+          onClick={() => dispatch(incrementByAmount(5))}
+          className="btn btn-outline-primary mt-2"
+        >
+          +5
         </button>
       </section>
     </div>
