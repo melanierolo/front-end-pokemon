@@ -1,13 +1,10 @@
 export interface pokemonListResponse {
-  count: number;
   next: string;
   previous?: string;
-  results?: SinglePokemon[];
+  results?: singlePokemon[];
 }
 
-export interface SinglePokemon {
+export interface singlePokemon {
   name: string;
-  url: string;
   id: string;
-  img: string;
 }
