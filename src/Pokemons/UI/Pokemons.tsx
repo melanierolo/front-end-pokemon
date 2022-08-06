@@ -1,5 +1,5 @@
-import React from "react";
-import { getPokemons } from "../Application/Pokemons.business";
+import React, { useEffect } from "react";
+import { getPokemons } from "../Structure/Pokemons.service";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import {
   decrement,
@@ -9,6 +9,10 @@ import {
 } from "../Structure/Pokemons.reducer";
 
 const Pokemons: React.FC = () => {
+  useEffect(() => {
+    getPokemons();
+    console.log("useEffect", getPokemons());
+  }, []);
   const onClick2 = () => {
     console.log("data", getPokemons());
   };

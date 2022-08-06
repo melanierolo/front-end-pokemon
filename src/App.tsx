@@ -6,6 +6,8 @@ import "./App.css";
 import Pokemons from "./Pokemons/UI/Pokemons";
 import store from "./Redux/store";
 import { Provider } from "react-redux";
+import PokemonCard from "./PokemonCard/UI/PokemonCard";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App(): JSX.Element {
   return (
@@ -16,6 +18,7 @@ function App(): JSX.Element {
             <img alt="logo" src={logo} width="500" />
             <h1>Hello World</h1>
             <Pokemons />
+            <PokemonCard />
           </>
         </Container>
       </Router>
