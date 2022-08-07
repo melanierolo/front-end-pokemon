@@ -36,11 +36,11 @@ const PokemonCard: React.FC<Props> = (props) => {
       <Row className="mt-2">
         <Col sm={8}></Col>
         <Col sm={4}>
-          <Button variant="warning ">
-            <OverlayTrigger overlay={<Tooltip>Catch a pokémon!</Tooltip>}>
+          <OverlayTrigger overlay={<Tooltip>Atrapa un pokémon!</Tooltip>}>
+            <Button variant="warning">
               <FontAwesomeIcon icon={faPlus} />
-            </OverlayTrigger>
-          </Button>
+            </Button>
+          </OverlayTrigger>
         </Col>
       </Row>
       <Figure className="text-center m-0 pokecard-figure">

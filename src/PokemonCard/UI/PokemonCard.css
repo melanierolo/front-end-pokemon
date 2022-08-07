@@ -4,7 +4,6 @@
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
   width: 13rem;
-  height: 30rem;
 }
 
 .poke-card:hover {
@@ -15,7 +14,4 @@
 .pokecard-img {
   width: 7rem;
   height: auto;
-}
-
-.pokecard-figure {
 }
