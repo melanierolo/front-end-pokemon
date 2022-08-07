@@ -24,7 +24,7 @@ const PokemonCard: React.FunctionComponent<IAplicationProps> = (props) => {
       <Row className="mt-2">
         <Col sm={8}></Col>
         <Col sm={4}>
-          <Button variant="warning">
+          <Button variant="warning ">
             <OverlayTrigger overlay={<Tooltip>Catch a pokémon!</Tooltip>}>
               <FontAwesomeIcon icon={faPlus} />
             </OverlayTrigger>

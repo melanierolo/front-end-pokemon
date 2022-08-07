@@ -1,35 +1,24 @@
 import React from "react";
-import logo from "./assets/logos/pokemon-23.svg";
 import { BrowserRouter as Router } from "react-router-dom";
-import { Container } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import "./App.css";
 import Pokemons from "./Pokemons/UI/Pokemons";
 import store from "./Redux/store";
 import { Provider } from "react-redux";
-import PokemonCard from "./PokemonCard/UI/PokemonCard";
 import "bootstrap/dist/css/bootstrap.min.css";
+import SidebarMyPokemons from "./SidebarMyPokemon/UI/SidebarMyPokemons";
 
 function App(): JSX.Element {
   return (
     <Provider store={store}>
-      <Router>
-        <Container>
-          <>
-            <img alt="logo" src={logo} width="500" />
-            <h1>Hello World</h1>
+      <Container fluid>
+        <Row>
+          <Router>
             <Pokemons />
-            <PokemonCard />
-            <PokemonCard />
-            <PokemonCard />
-            <PokemonCard />
-            <PokemonCard />
-            <PokemonCard />
-            <PokemonCard />
-            <PokemonCard />
-            <PokemonCard />
-          </>
-        </Container>
-      </Router>
+          </Router>
+          <SidebarMyPokemons />
+        </Row>
+      </Container>
     </Provider>
   );
 }
