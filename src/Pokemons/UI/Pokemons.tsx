@@ -10,6 +10,7 @@ import {
 } from "../Structure/Pokemons.reducer";
 import PokemonCard from "../../PokemonCard/UI/PokemonCard";
 import { Col } from "react-bootstrap";
+import "./Pokemons.css";
 
 const Pokemons: React.FC = () => {
   useEffect(() => {
@@ -26,9 +27,12 @@ const Pokemons: React.FC = () => {
 
   return (
     <Col sm={8}>
-      <img alt="logo" src={logo} width="500" />
-      <h1>Hello World</h1>
-      <button onClick={onClick2}>Click me</button>
+      <section className="text-center">
+        <img className="m-5 px-2 pokemon__logo" alt="logo" src={logo} />
+      </section>
+      <div>
+        <button onClick={onClick2}>Click me</button>
+      </div>
       <section>
         <h2>Counter:</h2>
         <span>
