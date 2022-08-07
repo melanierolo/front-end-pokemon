@@ -19,6 +19,14 @@ function App(): JSX.Element {
             <h1>Hello World</h1>
             <Pokemons />
             <PokemonCard />
+            <PokemonCard />
+            <PokemonCard />
+            <PokemonCard />
+            <PokemonCard />
+            <PokemonCard />
+            <PokemonCard />
+            <PokemonCard />
+            <PokemonCard />
           </>
         </Container>
       </Router>
