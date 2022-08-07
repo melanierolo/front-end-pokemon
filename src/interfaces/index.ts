@@ -1,1 +1,1 @@
-export * from "./pokemons.axios";
+export * from "./pokemons.list";

@@ -43,15 +43,16 @@ const PokemonCard: React.FC<Props> = (props) => {
           </Button>
         </Col>
       </Row>
-      <Figure className="text-center m-0 pokecard-figure ">
+      <Figure className="text-center m-0 pokecard-figure">
         <Figure.Image
           className="pokecard-img"
-          alt="iamgen pokemon-151x160"
+          alt="imagen pokemon"
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${index}.svg`}
         />
       </Figure>
       <Card.Body className="text-center m-0 py-0">
         <Card.Title>{pokemon.name.toUpperCase()}</Card.Title>
+        <Button variant="outline-danger">Ver más</Button>
       </Card.Body>
     </Card>
   );
