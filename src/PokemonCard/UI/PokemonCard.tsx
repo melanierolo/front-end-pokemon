@@ -32,11 +32,7 @@ const PokemonCard: React.FC<Props> = (props) => {
   //onsole.log(record)
 
   return (
-    <Card
-      className="m-3 card poke-card"
-      border="danger"
-      style={{ width: "15rem" }}
-    >
+    <Card className="mx-2 m-lg-1 card poke-card h-100" border="danger">
       <Row className="mt-2">
         <Col sm={8}></Col>
         <Col sm={4}>
@@ -47,10 +43,9 @@ const PokemonCard: React.FC<Props> = (props) => {
           </Button>
         </Col>
       </Row>
-      <Figure className="text-center m-0">
+      <Figure className="text-center m-0 pokecard-figure ">
         <Figure.Image
-          width={151}
-          height={160}
+          className="pokecard-img"
           alt="iamgen pokemon-151x160"
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${index}.svg`}
         />

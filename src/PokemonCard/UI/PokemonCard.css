@@ -3,9 +3,16 @@
   border-radius: 5px;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  width: 13rem;
+  height: 30rem;
 }
 
 .poke-card:hover {
   transform: translate(0, -8px);
   transform: scale(1.1);
+}
+
+.pokecard-img {
+  width: 6rem;
+  height: auto;
 }
