@@ -1,60 +1,85 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import type { RootState } from "../../Redux/store";
 
-// Define a type for the slice state
-interface CounterState {
-  value: number;
-  page: number;
-  pokemons: object;
-  isLoading: boolean;
+// Define a type for the slice state}
+
+interface Pokemon {
+  name: string;
+  url: string;
+}
+
+interface PokemonsState {
+  list: Array<Pokemon>;
+  selected: null;
+  count: number;
+  next: any;
+  previous: any;
 }
 
 // Define the initial state using that type
-const initialState: CounterState = {
-  value: 10,
-  pokemons: [],
-  page: 0,
-  isLoading: false,
+const initialState: PokemonsState = {
+  list: [],
+  selected: null,
+  count: 0,
+  next: null,
+  previous: null,
 };
 
-export const pokemonSlice = createSlice({
-  name: "pokemon",
+export const slice = createSlice({
+  name: "pokemons",
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    startLoadingPokemons: (state) => {
-      state.isLoading = true;
+    setPokemons: (state, { payload: list }) => {
+      return {
+        ...state,
+        list,
+      };
     },
-    setPokemons: (state, action) => {
-      console.log(action);
+    countPokemons: (state, { payload: count }) => {
+      return {
+        ...state,
+        count,
+      };
     },
-    increment: (state) => {
-      state.value += 1;
+    nextPokemons: (state, { payload: next }) => {
+      return {
+        ...state,
+        next,
+      };
     },
-    decrement: (state) => {
-      state.value -= 1;
+    previousPokemons: (state, { payload: previous }) => {
+      return {
+        ...state,
+        previous,
+      };
     },
-    incrementplustwo: (state) => {
-      state.value += 2;
-    },
-
-    // Use the PayloadAction type to declare the contents of `action.payload`
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      console.log(action);
-      state.value += action.payload;
+    selectPokemon: (state, { payload: selected }) => {
+      return {
+        ...state,
+        selected,
+      };
     },
   },
 });
 
 export const {
-  increment,
-  decrement,
-  incrementplustwo,
-  incrementByAmount,
   setPokemons,
-} = pokemonSlice.actions;
+  selectPokemon,
+  countPokemons,
+  nextPokemons,
+  previousPokemons,
+} = slice.actions;
 
-export default pokemonSlice.reducer;
+export default slice.reducer;
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectCount = (store: RootState) => store.pokemons.value;
+export const getPokemonsSelector = (store: RootState) => store.pokemons.list;
+export const getPokemonsCountSelector = (store: RootState) =>
+  store.pokemons.count;
+export const getPokemonsNextSelector = (store: RootState) =>
+  store.pokemons.next;
+export const getPokemonsPreviousSelector = (store: RootState) =>
+  store.pokemons.previous;
+export const getSelectedPokemonSelector = (store: RootState) =>
+  store.pokemons.selected;

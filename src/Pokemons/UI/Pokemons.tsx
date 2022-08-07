@@ -1,81 +1,37 @@
 import React, { useEffect } from "react";
-import { getPokemons } from "../Structure/Pokemons.service";
-import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import { getPokemons } from "../Application/Pokemons.business";
+import { useAppSelector } from "../../app/hooks";
+import { getPokemonsSelector } from "../Structure/Pokemons.reducer";
 import logo from "../../assets/logos/pokemon-23.svg";
-import {
-  decrement,
-  increment,
-  incrementByAmount,
-  incrementplustwo,
-} from "../Structure/Pokemons.reducer";
+import { Col, Figure } from "react-bootstrap";
 import PokemonCard from "../../PokemonCard/UI/PokemonCard";
-import { Col } from "react-bootstrap";
-import "./Pokemons.css";
 
 const Pokemons: React.FC = () => {
+  const pokemons = useAppSelector(getPokemonsSelector);
+
   useEffect(() => {
     getPokemons();
-    console.log("useEffect", getPokemons());
+    console.log(getPokemons);
   }, []);
-  const onClick2 = () => {
-    console.log("data", getPokemons());
-  };
-
-  // The `state` arg is correctly typed as `RootState` already
-  const count = useAppSelector((state) => state.pokemons.value);
-  const dispatch = useAppDispatch();
 
   return (
     <Col sm={8}>
       <section className="text-center">
-        <img className="m-5 px-2 pokemon__logo" alt="logo" src={logo} />
-      </section>
-      <div>
-        <button onClick={onClick2}>Click me</button>
-      </div>
-      <section>
-        <h2>Counter:</h2>
-        <span>
-          <b>Count is:</b>
-          {count}
-        </span>
-        <br />
-        <button
-          onClick={() => dispatch(increment())}
-          className="btn btn-outline-primary mt-2"
-        >
-          +1
-        </button>
-        <button
-          onClick={() => dispatch(decrement())}
-          className="btn btn-outline-primary mt-2"
-        >
-          -1
-        </button>
-        <button
-          onClick={() => dispatch(incrementplustwo())}
-          className="btn btn-outline-primary mt-2"
-        >
-          +2
-        </button>
-        <button
-          onClick={() => dispatch(incrementByAmount(5))}
-          className="btn btn-outline-primary mt-2"
-        >
-          +5
-        </button>
+        <Figure className="text-center mt-4">
+          <Figure.Image
+            className="pokemon__logo"
+            width={400}
+            alt="pokemon logo"
+            src={logo}
+          />
+        </Figure>
       </section>
 
-      <PokemonCard />
-      <PokemonCard />
-      <PokemonCard />
-      <PokemonCard />
-      <PokemonCard />
-      <PokemonCard />
-      <PokemonCard />
-      <PokemonCard />
-      <PokemonCard />
-      <PokemonCard />
+      <section>
+        {pokemons.map((pokemon, index) => (
+          <PokemonCard pokemon={pokemon} index={index + 1} key={index} />
+        ))}
+      </section>
     </Col>
   );
 };

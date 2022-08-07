@@ -1,5 +1,4 @@
 import axios from "axios";
-import { PokemonListResponse } from "../../interfaces/pokemons.list";
 //axios is a library that helps fetch data(easier)
 class API {
   url: string;
@@ -9,16 +8,9 @@ class API {
 
   async get() {
     try {
-      const { data } = await axios.get<PokemonListResponse>(this.url);
-      return data;
+      return await axios.get(this.url);
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.log("error message: ", error.message);
-        return error.message;
-      } else {
-        console.log("unexpected error: ", error);
-        return "An unexpected error occurred";
-      }
+      console.log("get error");
     }
   }
 }
