@@ -1,30 +1,30 @@
 import store from "../../Redux/store";
 import {
   setPokemons,
-  countPokemons,
-  nextPokemons,
-  previousPokemons,
   selectPokemon,
+  cancelSelected,
+  addPokemons,
+  showPokemon,
 } from "./Pokemons.reducer";
 
 export function saveListPokemons(records?: any) {
   store.dispatch(setPokemons(records));
 }
 
-export function saveCountPokemons(count: number) {
-  store.dispatch(countPokemons(count));
-}
-
-export function saveNextPokemons(count: number) {
-  store.dispatch(nextPokemons(count));
-}
-
-export function savePreviousPokemons(count: number) {
-  store.dispatch(previousPokemons(count));
-}
-
 export function saveSelectedPokemon(pokemon?: any) {
   store.dispatch(selectPokemon(pokemon));
+}
+
+export function deselectPokemon(id?: any) {
+  store.dispatch(cancelSelected(id));
+}
+
+export function saveAddPokemons(records?: any) {
+  store.dispatch(addPokemons(records));
+}
+
+export function savePokemon(pokemon?: any) {
+  store.dispatch(showPokemon(pokemon));
 }
 
 export type RootState = ReturnType<typeof store.getState>;

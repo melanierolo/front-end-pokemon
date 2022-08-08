@@ -11,22 +11,35 @@ import {
 import "./PokemonItem.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { deselectPokemon } from "../../Pokemons/Structure/Pokemons.store";
+
+interface PokemonImage {
+  front_default: string;
+}
+
+interface Other {
+  dream_world: PokemonImage;
+}
 
 interface PokemonItem {
   name: string;
-  url: string;
+  id: number;
+  sprites: {
+    other: Other;
+  };
 }
 
 interface Props {
-  pokemon: PokemonItem;
-  index: number;
-  key: number;
+  data: PokemonItem;
 }
 
-const PokemonItem: React.FC = () => {
-  //onsole.log(record)
+const PokemonItem: React.FC<Props> = (props) => {
+  const { data } = props;
 
-  return (
+  const cancel = (id?: any) => {
+    deselectPokemon(id);
+  };
+  return data ? (
     <Card className="p-2 mx-2 my-2 m-lg-2 card poke-item" border="info">
       <Row className="mt-2">
         <Col sm={8}></Col>
@@ -34,7 +47,7 @@ const PokemonItem: React.FC = () => {
           <OverlayTrigger
             overlay={<Tooltip>Elimina al pokémon de la lista</Tooltip>}
           >
-            <Button variant="danger">
+            <Button variant="danger" onClick={() => cancel(data?.id)}>
               <FontAwesomeIcon icon={faTrashCan} />
             </Button>
           </OverlayTrigger>
@@ -44,13 +57,15 @@ const PokemonItem: React.FC = () => {
         <Figure.Image
           className="pokecard-img"
           alt="imagen pokemon"
-          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg`}
+          src={data?.sprites?.other?.dream_world?.front_default}
         />
       </Figure>
       <Card.Body className="text-center m-0 py-0">
-        <Card.Title className="text-warning">Pokemon #1</Card.Title>
+        <Card.Title>{data?.name}</Card.Title>
       </Card.Body>
     </Card>
+  ) : (
+    <div />
   );
 };
 

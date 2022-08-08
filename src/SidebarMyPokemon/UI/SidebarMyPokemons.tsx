@@ -2,12 +2,15 @@ import React from "react";
 import { Col, Row } from "react-bootstrap";
 import "./SidebarMyPokemons.css";
 import PokemonItem from "../../PokemonItem/UI/PokemonItem";
+import { addPokemonsSelector } from "../../Pokemons/Structure/Pokemons.reducer";
+import { useSelector } from "react-redux";
+import { showPokemonSelector } from "../../Pokemons/Structure/Pokemons.reducer";
+import PokemonInfo from "../../PokemonInfo/UI/PokemonInfo";
 
-export interface IAplicationProps {}
+const SidebarMyPokemons: React.FunctionComponent = () => {
+  const items = useSelector(addPokemonsSelector);
+  const pokemonData = useSelector(showPokemonSelector);
 
-const SidebarMyPokemons: React.FunctionComponent<IAplicationProps> = (
-  props
-) => {
   return (
     <Col className="m-0 p-0 sidebar" sm={4}>
       <section>
@@ -20,12 +23,9 @@ const SidebarMyPokemons: React.FunctionComponent<IAplicationProps> = (
       </section>
       <section>
         <Row className="row my-4 justify-content-center gap-md-2  gap-xl-0  ">
-          <PokemonItem />
-          <PokemonItem />
-          <PokemonItem />
-          <PokemonItem />
-          <PokemonItem />
-          <PokemonItem />
+          {items.map((elem, index) => (
+            <PokemonItem data={elem} key={index} />
+          ))}
         </Row>
       </section>
     </Col>

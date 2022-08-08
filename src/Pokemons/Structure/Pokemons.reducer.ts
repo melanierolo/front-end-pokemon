@@ -8,21 +8,47 @@ interface Pokemon {
   url: string;
 }
 
+interface PokemonImage {
+  front_default: string;
+}
+
+interface Other {
+  dream_world: PokemonImage;
+}
+
+interface PokemonItem {
+  name: string;
+  id: number;
+  sprites: {
+    other: Other;
+  };
+}
+
 interface PokemonsState {
   list: Array<Pokemon>;
+  newList: Array<PokemonItem>;
   selected: null;
-  count: number;
-  next: any;
-  previous: any;
+  id: null;
+  pokemon: PokemonItem;
 }
 
 // Define the initial state using that type
 const initialState: PokemonsState = {
   list: [],
+  newList: [],
+  pokemon: {
+    name: "",
+    id: 0,
+    sprites: {
+      other: {
+        dream_world: {
+          front_default: "",
+        },
+      },
+    },
+  },
   selected: null,
-  count: 0,
-  next: null,
-  previous: null,
+  id: null,
 };
 
 export const slice = createSlice({
@@ -36,28 +62,28 @@ export const slice = createSlice({
         list,
       };
     },
-    countPokemons: (state, { payload: count }) => {
-      return {
-        ...state,
-        count,
-      };
-    },
-    nextPokemons: (state, { payload: next }) => {
-      return {
-        ...state,
-        next,
-      };
-    },
-    previousPokemons: (state, { payload: previous }) => {
-      return {
-        ...state,
-        previous,
-      };
-    },
     selectPokemon: (state, { payload: selected }) => {
       return {
         ...state,
         selected,
+      };
+    },
+    addPokemons: (state, { payload: newList }) => {
+      return {
+        ...state,
+        newList: [...state.newList, newList],
+      };
+    },
+    cancelSelected: (state, { payload: id }) => {
+      return {
+        ...state,
+        newList: [...state.newList.filter((elem) => elem.id !== id)],
+      };
+    },
+    showPokemon: (state, { payload: pokemon }) => {
+      return {
+        ...state,
+        pokemon,
       };
     },
   },
@@ -66,20 +92,18 @@ export const slice = createSlice({
 export const {
   setPokemons,
   selectPokemon,
-  countPokemons,
-  nextPokemons,
-  previousPokemons,
+  cancelSelected,
+  addPokemons,
+  showPokemon,
 } = slice.actions;
 
 export default slice.reducer;
 
 // Other code such as selectors can use the imported `RootState` type
 export const getPokemonsSelector = (store: RootState) => store.pokemons.list;
-export const getPokemonsCountSelector = (store: RootState) =>
-  store.pokemons.count;
-export const getPokemonsNextSelector = (store: RootState) =>
-  store.pokemons.next;
-export const getPokemonsPreviousSelector = (store: RootState) =>
-  store.pokemons.previous;
 export const getSelectedPokemonSelector = (store: RootState) =>
   store.pokemons.selected;
+export const addPokemonsSelector = (store: RootState) => store.pokemons.newList;
+export const deletePokemonSelector = (store: RootState) =>
+  store.pokemons.selected;
+export const showPokemonSelector = (store: RootState) => store.pokemons.pokemon;

@@ -1,7 +1,9 @@
 import { getPokemonLogic, getPokemonsLogic } from "./Pokemons.logic";
 import {
+  saveAddPokemons,
   saveListPokemons,
   saveSelectedPokemon,
+  savePokemon,
 } from "../Structure/Pokemons.store";
 
 export async function getPokemons(params?: any) {
@@ -11,7 +13,13 @@ export async function getPokemons(params?: any) {
 
 export async function getPokemon(id: number) {
   const pokemon = await getPokemonLogic(id);
-  saveSelectedPokemon(pokemon);
+  saveSelectedPokemon(pokemon?.data);
+  saveAddPokemons(pokemon?.data);
+}
+
+export async function getPokemonData(id: number) {
+  const pokemon = await getPokemonLogic(id);
+  savePokemon(pokemon?.data);
 }
 
 export default getPokemons;

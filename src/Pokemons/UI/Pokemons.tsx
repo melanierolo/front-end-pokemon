@@ -6,8 +6,16 @@ import logo from "../../assets/logos/pokemon-23.svg";
 import { Col, InputGroup, Form, Figure, Row } from "react-bootstrap";
 import PokemonCard from "../../PokemonCard/UI/PokemonCard";
 
+//const defaultProps: IPokemonsList[] = [];
 const Pokemons: React.FC = () => {
   const pokemons = useAppSelector(getPokemonsSelector);
+
+  /*
+  const pokemons = useAppSelector(getPokemonsSelector);
+  const [pokemonsList, setPokemonsList]: [
+    IPokemonsList[],
+    (posts: IPokemonsList[]) => void
+  ] = React.useState(defaultProps);
   const [search, setSearch]: [string, (search: string) => void] =
     React.useState("");
 
@@ -15,14 +23,14 @@ const Pokemons: React.FC = () => {
     setSearch(e.target.value);
     console.log("escribir", setSearch(e.target.value));
   };
-
+*/
   useEffect(() => {
     getPokemons();
     console.log(getPokemons);
   }, []);
 
   return (
-    <Col sm={8}>
+    <Col sm={8} className="m-0 p-0">
       <section className="text-center">
         <Figure className="text-center mt-4">
           <Figure.Image
@@ -33,7 +41,8 @@ const Pokemons: React.FC = () => {
           />
         </Figure>
       </section>
-      <section>
+
+      {/*      <section>
         <Row className="my-4 mx-5 justify-content-center">
           <InputGroup className="mb-3">
             <Form.Control
@@ -49,13 +58,11 @@ const Pokemons: React.FC = () => {
             />
           </InputGroup>
         </Row>
-      </section>
+            </section>*/}
 
       <section>
         <Row className="row my-4 justify-content-center gap-md-2  gap-xl-0  ">
           {pokemons.map((pokemon, index) => (
-            /*{ search == "" || pokemon.name.toLowerCase().includes(search.toLowerCase()) ? (console.log("verdad") ):()}
-             */
             <Col className="py-2" xs={7} sm={7} md={5} xl={4} xxl={3}>
               <PokemonCard pokemon={pokemon} index={index + 1} key={index} />
             </Col>

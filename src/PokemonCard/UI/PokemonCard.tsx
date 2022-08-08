@@ -11,23 +11,23 @@ import {
 import "./PokemonCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { useSelector } from "react-redux";
-import { getSelectedPokemonSelector } from "../../Pokemons/Structure/Pokemons.reducer";
-
-interface PokemonItem {
+import {
+  getPokemon,
+  getPokemonData,
+} from "../../Pokemons/Application/Pokemons.business";
+interface Pokemon {
   name: string;
   url: string;
 }
 
 interface Props {
-  pokemon: PokemonItem;
+  pokemon: Pokemon;
   index: number;
   key: number;
 }
 
 const PokemonCard: React.FC<Props> = (props) => {
   const { pokemon, index } = props;
-  const record = useSelector(getSelectedPokemonSelector);
 
   //onsole.log(record)
 
@@ -37,7 +37,12 @@ const PokemonCard: React.FC<Props> = (props) => {
         <Col sm={8}></Col>
         <Col sm={4}>
           <OverlayTrigger overlay={<Tooltip>Atrapa un pokémon!</Tooltip>}>
-            <Button variant="warning">
+            <Button
+              variant="warning "
+              onClick={() => {
+                getPokemon(index);
+              }}
+            >
               <FontAwesomeIcon icon={faPlus} />
             </Button>
           </OverlayTrigger>
@@ -52,7 +57,14 @@ const PokemonCard: React.FC<Props> = (props) => {
       </Figure>
       <Card.Body className="text-center m-0 py-0">
         <Card.Title>{pokemon.name.toUpperCase()}</Card.Title>
-        <Button variant="outline-danger">Ver más</Button>
+        <Button
+          variant="outline-danger"
+          onClick={() => {
+            getPokemonData(index);
+          }}
+        >
+          Ver más
+        </Button>
       </Card.Body>
     </Card>
   );
