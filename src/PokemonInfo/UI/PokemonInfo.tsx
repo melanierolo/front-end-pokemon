@@ -13,15 +13,6 @@ import "./PokemonInfo.css";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
-import {
-  getPokemon,
-  getPokemonData,
-} from "../../Pokemons/Application/Pokemons.business";
-
-interface Pokemon {
-  name: string;
-  url: string;
-}
 interface PokemonImage {
   front_default: string;
 }
@@ -53,7 +44,7 @@ export interface IAplicationProps {
 
 const PokemonInfo: React.FunctionComponent<IAplicationProps> = (props) => {
   const { data } = props;
-  console.log(data.stats);
+  console.log(data);
   const navigate = useNavigate();
 
   return (
