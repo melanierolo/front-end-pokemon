@@ -1,4 +1,4 @@
-# Proyecto CryptoCoin/Front-End
+# Proyecto Pokemon/Front-End
 
 ## Descripción
 
