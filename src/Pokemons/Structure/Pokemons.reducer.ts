@@ -16,12 +16,22 @@ interface Other {
   dream_world: PokemonImage;
 }
 
+interface TypesStat {
+  name: string;
+}
+interface Stat {
+  base_stat: number;
+  stat: TypesStat;
+}
+
 interface PokemonItem {
   name: string;
   id: number;
   sprites: {
     other: Other;
   };
+  height: number;
+  stats: Array<Stat>;
 }
 
 interface PokemonsState {
@@ -46,6 +56,8 @@ const initialState: PokemonsState = {
         },
       },
     },
+    height: 0,
+    stats: [],
   },
   selected: null,
   id: null,

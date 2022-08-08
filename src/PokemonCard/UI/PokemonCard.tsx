@@ -15,6 +15,7 @@ import {
   getPokemon,
   getPokemonData,
 } from "../../Pokemons/Application/Pokemons.business";
+import { useNavigate } from "react-router-dom";
 interface Pokemon {
   name: string;
   url: string;
@@ -28,6 +29,7 @@ interface Props {
 
 const PokemonCard: React.FC<Props> = (props) => {
   const { pokemon, index } = props;
+  const navigate = useNavigate();
 
   //onsole.log(record)
 
@@ -61,6 +63,7 @@ const PokemonCard: React.FC<Props> = (props) => {
           variant="outline-danger"
           onClick={() => {
             getPokemonData(index);
+            navigate("/description");
           }}
         >
           Ver más

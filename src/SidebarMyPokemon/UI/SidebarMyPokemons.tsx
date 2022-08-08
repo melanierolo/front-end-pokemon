@@ -4,12 +4,9 @@ import "./SidebarMyPokemons.css";
 import PokemonItem from "../../PokemonItem/UI/PokemonItem";
 import { addPokemonsSelector } from "../../Pokemons/Structure/Pokemons.reducer";
 import { useSelector } from "react-redux";
-import { showPokemonSelector } from "../../Pokemons/Structure/Pokemons.reducer";
-import PokemonInfo from "../../PokemonInfo/UI/PokemonInfo";
 
 const SidebarMyPokemons: React.FunctionComponent = () => {
   const items = useSelector(addPokemonsSelector);
-  const pokemonData = useSelector(showPokemonSelector);
 
   return (
     <Col className="m-0 p-0 sidebar" sm={4}>

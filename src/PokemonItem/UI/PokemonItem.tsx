@@ -20,6 +20,13 @@ interface PokemonImage {
 interface Other {
   dream_world: PokemonImage;
 }
+interface TypesStat {
+  name: string;
+}
+interface Stat {
+  base_stat: number;
+  stat: TypesStat;
+}
 
 interface PokemonItem {
   name: string;
@@ -27,6 +34,8 @@ interface PokemonItem {
   sprites: {
     other: Other;
   };
+  height: number;
+  stats: Array<Stat>;
 }
 
 interface Props {
